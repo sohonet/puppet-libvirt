@@ -60,7 +60,7 @@ disk_src_attrs = {
     <% @disks.each_with_index do |disk,i| -%>
     <disk type='<%= disk['type'] %>' device='<%= disk['device'] %>'>
       <source <% disk_src_attrs[disk['type']].each do |attr| -%><%= attr %>='<%= disk['source'][attr] %>'<% end -%>/>
-      <target dev='vd<%= (i+97).chr %>' bus='<%= disk['bus'] %>'/>
+      <target dev='hd<%= (i+97).chr %>' bus='<%= disk['bus'] %>'/>
       <% if disk.has_key?('driver') -%>
       <driver <% disk['driver'].each do |attr| -%><%= attr[0] %>='<%= attr[1] %>' <% end -%>/>
       <% else -%>
@@ -77,7 +77,6 @@ disk_src_attrs = {
         <mac address='<%= iface['mac'] %>'/>
       <% end -%>
       <source network='<%= iface['network'] %>'<% if iface.has_key?('portgroup') %> portgroup='<%= iface['portgroup'] %>'<% end %>/>
-      <model type='<%= iface.has_key?('type') and iface['type'] %>'/>
       <% if @boot == 'per-device' && iface.has_key?('boot_order') -%>
       <boot order='<%= iface['boot_order'] %>'/>
       <% end -%>
