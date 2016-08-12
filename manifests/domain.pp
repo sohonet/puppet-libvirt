@@ -123,7 +123,7 @@ define libvirt::domain (
                       template('libvirt/domain.xml.erb'),
                       '" > $f && virsh define $f && rm $f']),
     provider => 'shell',
-    creates  => "${params::config_dir}/qemu/${name}.xml",
+    creates  => "${params::config_dir}/libxl/${name}.xml",
     require  => Class['libvirt'],
   }
 
@@ -131,7 +131,7 @@ define libvirt::domain (
     exec {"libvirt-domain-autostart-${name}":
       command => "virsh autostart ${name}",
       provider => 'shell',
-      creates => "${params::config_dir}/qemu/autostart/${name}.xml",
+      creates => "${params::config_dir}/libxl/autostart/${name}.xml",
       require => Exec["libvirt-domain-${name}"],
     }
 
