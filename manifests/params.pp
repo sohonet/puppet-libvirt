@@ -57,5 +57,10 @@ class libvirt::params {
     'netmask' => '255.255.255.0',
     'dhcp'    => $default_dhcp,
   }
+
+  $config_dir             = '/etc/libvirt'
+  $manage_domains_config  = '/etc/manage-domains.ini'
+
+
 }
 
