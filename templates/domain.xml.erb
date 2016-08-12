@@ -64,7 +64,7 @@ disk_src_attrs = {
       <% if disk.has_key?('driver') -%>
       <driver <% disk['driver'].each do |attr| -%><%= attr[0] %>='<%= attr[1] %>' <% end -%>/>
       <% else -%>
-      <driver name='qemu' type='raw' io='native' cache='none' />
+      <driver name='phy'/>
       <% end -%>
       <% if @boot == 'per-device' && disk.has_key?('boot_order') -%>
       <boot order='<%= disk['boot_order'] %>'/>
