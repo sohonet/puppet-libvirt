@@ -51,9 +51,6 @@ disk_src_attrs = {
       <model type='cirrus' vram='9216' heads='1'/>
       <alias name='video0'/>
     </video>
-    <memballoon model='virtio'>
-      <alias name='balloon0'/>
-    </memballoon>
     <serial type='pty'>
       <target port='0'/>
     </serial>
@@ -80,7 +77,7 @@ disk_src_attrs = {
         <mac address='<%= iface['mac'] %>'/>
       <% end -%>
       <source network='<%= iface['network'] %>'<% if iface.has_key?('portgroup') %> portgroup='<%= iface['portgroup'] %>'<% end %>/>
-      <model type='<%= iface.has_key?('type') and iface['type'] or 'virtio' %>'/>
+      <model type='<%= iface.has_key?('type') and iface['type'] %>'/>
       <% if @boot == 'per-device' && iface.has_key?('boot_order') -%>
       <boot order='<%= iface['boot_order'] %>'/>
       <% end -%>
